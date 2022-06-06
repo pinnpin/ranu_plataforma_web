@@ -3,6 +3,6 @@ import medico from '../controllers/medico';
 
 const router = express.Router();
 
-router.post('/nascimento', medico.registerNascimento);
+router.get('/tabInicial', medico.viewNascimentos);
 
 module.exports = router;
