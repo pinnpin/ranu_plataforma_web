@@ -74,3 +74,16 @@ CREATE TABLE rn_rastreio(
     rastreio DECIMAL
 );
 
+CREATE TABLE rn_fatoresrisco(
+    nseq INTEGER REFERENCES rn_nascimentos(nseq),
+    histfam INTEGER,
+    infecong INTEGER,
+    anomcranio INTEGER,
+    hiperbili INTEGER,
+    baixopeso INTEGER,
+    medototo INTEGER,
+    meninbacte INTEGER,
+    indexapgar INTEGER,
+    ventmec INTEGER,
+    hipoacusia INTEGER
+);
