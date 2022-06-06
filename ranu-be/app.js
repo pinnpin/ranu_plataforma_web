@@ -3,6 +3,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import history from 'connect-history-api-fallback';
 import path from 'path';
+import axios from 'axios';
 
 const express = require('express');
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/', require('./routes/auth.routes'));
 app.use('/medico', require('./routes/medico.routes'));
+app.use('/tecnico', require('./routes/tecnico.routes'));
 
 
 // Settings
