@@ -18,10 +18,11 @@
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
+                <v-card class="ma-3" max-width="344" v-for="nascimentos in nascimentosList" :key="nascimentos.numero" :nascimentos="nascimentos">
                 <tbody>
                     <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">Ana</td>
+                        <td class="text-center">{{nascimentos.numero}}</td>
+                        <td class="text-center">{{nascimentos.nome}}</td>
                         <td class="text-center">1ª Fase</td>
                         <td class="text-center"> <v-icon color="blue" medium class="mr-6" @click="seeItem(item)"> mdi-eye
                         </v-icon>
@@ -30,7 +31,8 @@
                         <v-icon medium @click="deleteItem(item)"> mdi-delete
                         </v-icon> </td>
                     </tr>
-                </tbody>
+                    </tbody>
+                    </v-card>
             </v-simple-table>
         </v-col>
     </v-row>
@@ -41,14 +43,30 @@
 <script>
 
 
+
 export default ({
-   components: {
+   data: () => ({
        medico: {},
-       numero: {}
+       nascimentosList: [],
+       alert: {show: false},
+       state: "loading",
+       error: ""
+   }),
+   created() {
+       this.loadNascimentos();
    },
-   created: function() {
-       this.medico = JSON.parse(sessionStorage.getItem('session'));
-       console.log(this.medico);
+   methods: {
+       async loadNascimentos() {
+           try {
+               const nascimentos = await fetch ('/tabInicial');
+               this.nascimentos = await nascimentos.json();
+               this.state = "ready";
+           } catch (err) {
+               this.error = err;
+               this.state = "error"
+           }
+       }
    }
-})
+   
+});
 </script>

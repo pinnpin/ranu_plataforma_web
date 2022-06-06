@@ -1,6 +1,7 @@
 <template>
 <v-container>
   <v-app-bar app color="primary" dark>
+    <v-tool-title>Hospital dos Bombados</v-tool-title>
   </v-app-bar>
     <v-alert text v-model="alert.show" :type="alert.type" dismissible>{{alert.message}}
     </v-alert>
@@ -12,6 +13,8 @@
     <v-col cols="12" md="6">
       <v-form class="ma-3" @submit.prevent="registerNascimento()" ref="addForm"> 
     
+    <v-text-field v-model="add_bebes.numero" label="Número" required>
+    </v-text-field>
      <v-text-field v-model="add_bebes.nseq" label="Número de Seq" required>
     </v-text-field>
     <v-text-field v-model="add_bebes.processo" label="Número de Processo" required>
@@ -67,6 +70,7 @@ export default ({
               ///this.add_bebes.id = this.tecnico.id
               try {
                 const newNascimento = new FormData();
+                newNascimento.append("numero", this.add_bebes.numero);
                 newNascimento.append("nseq", this.add_bebes.nseq);
                 newNascimento.append("processo", this.add_bebes.processo);
                 newNascimento.append("dta_nascimento", this.add_bebes.dta_nascimento);
@@ -79,7 +83,7 @@ export default ({
                 newNascimento.append("apgar5", this.add_bebes.apgar5);
                 
 
-                const res = await this.axios.post('/nascimento', newNascimento);
+                const res = await this.axios.post('/nascimento', this.newNascimento);
                 this.lista_bebes.push(res.data.nascimento);
                 this.$refs.addForm.reset();
                 this.add = false;
