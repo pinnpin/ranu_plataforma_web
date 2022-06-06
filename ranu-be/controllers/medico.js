@@ -1,8 +1,11 @@
+import { json, query } from 'express';
+import { ParameterStatusMessage } from 'pg-protocol/dist/messages';
 import pool from '../database/keys';
 
 const medico = {};
 
 // NASCIMENTOS
+/*
 medico.registerNascimento = async (req, res)=>{
     const {numero, nseq, processo, nome, dta_nascimento, hora, gestacao, peso, sexo, puerperio, local_nascimento, apgar1, apgar5} = req.body;
     console.log(numero, nseq, processo, nome, dta_nascimento, hora, gestacao, peso, sexo, puerperio, local_nascimento, apgar1, apgar5)
@@ -19,6 +22,21 @@ medico.registerNascimento = async (req, res)=>{
         })
     }
 };
+*/
+// Tabela de pacientes
+
+medico.viewNascimentos = async (req, res) => {
+    try {
+        const nascimentos = await pool.query('SELECT * FROM rn_nascimentos');
+        res.status(200).json(nascimentos);
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has ocurred',
+            error
+        })
+    }
+}
+
 
 
 module.exports = medico;
