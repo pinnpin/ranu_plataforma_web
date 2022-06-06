@@ -26,7 +26,7 @@ const routes = [
 
 {
 
-  path: '/nascimentos',
+  path: '/nascimento',
   name: 'Nascimentos',
   component: () => import(/* webpackChunkName: "about" */ '../views/Registo.vue')
 
