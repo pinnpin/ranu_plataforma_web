@@ -23,17 +23,17 @@ CREATE TABLE tecnico (
 );
 
 CREATE TABLE rn_nascimentos (
-    numero SERIAL,
-    nseq INTEGER PRIMARY KEY,
-    processo INTEGER NOT NULL,
-    nome TEXT NOT NULL,
-    dta_nascimento TEXT,
+    numero INTEGER,
+    nseq INTEGER,
+    processo TEXT,
+    nome TEXT,
+    dta_nascimento TIMESTAMP WITHOUT TIME ZONE,
     hora TEXT,
     gestacao TEXT,
-    peso INTEGER,
+    peso TEXT,
     sexo TEXT,
     puerperio TEXT,
-    local_nascimento TEXT,
+    local_nasc TEXT,
     apgar1 TEXT,
     apgar5 TEXT
 );
