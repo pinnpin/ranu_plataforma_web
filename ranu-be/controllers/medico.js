@@ -35,4 +35,57 @@ medico.registerFatores = async (red, res) => {
   }
 }
 
+//EM QUE FASE ESTÁ A AVALIAÇÃO DO OH BABY BABY YOU KILLING MEEEEEEEEEEE
+
+
+
+//Registar Avaliações (1,2,3)
+medico.registerAvaliacao1 = async (red,res) => {
+    const {numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador} = req.body;
+    try {
+        await pool.query('INSERT INTO rn_primeira (numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador]);
+            res.status(200).json({
+                message: 'A primeira avaliação foi registada com sucesso!',
+                data_avaliacao
+            })
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has occured',
+            error
+        })
+    }
+}
+
+medico.registerAvaliacao2 = async (red,res) => {
+    const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
+    try {
+        await pool.query('INSERT INTO rn_segunda (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
+            res.status(200).json({
+                message: 'A segunda avaliação foi registada com sucesso!',
+                data_avaliacao
+            })
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has occured!',
+            error
+        })
+    }
+}
+
+medico.registerAvaliacao3 = async (red,res) => {
+    const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
+    try {
+        await pool.query('INSERT INTO rn_terceira (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
+            res.status(200).json({
+                message: 'A terceira avaliação foi registada com sucesso!',
+                data_avaliacao
+            })
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has occured!',
+            error
+        })
+    }
+}
+
 module.exports = medico;
