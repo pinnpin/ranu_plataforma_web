@@ -18,11 +18,11 @@
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
-                <v-card class="ma-3" max-width="344" v-for="nascimentos in nascimentosList" :key="nascimentos.numero" :nascimentos="nascimentos">
+                <v-card class="ma-3" max-width="344" v-for="nascimento in nascimentosList" :key="nascimento.nseq" :nascimento="nascimento">
                 <tbody>
                     <tr>
-                        <td class="text-center">{{nascimentos.numero}}</td>
-                        <td class="text-center">{{nascimentos.nome}}</td>
+                        <td class="text-center">{{nascimento.numero}}</td>
+                        <td class="text-center">{{nascimento.nome}}</td>
                         <td class="text-center">1ª Fase</td>
                         <td class="text-center"> <v-icon color="blue" medium class="mr-6" @click="seeItem(item)"> mdi-eye
                         </v-icon>
@@ -58,9 +58,11 @@ export default ({
    methods: {
        async loadNascimentos() {
            try {
-               const nascimentos = await fetch ('/tabInicial');
-               this.nascimentos = await nascimentos.json();
-               this.state = "ready";
+               const res = await this.axios.get('http://localhost:3000/tabInicial');
+               this.nascimentosList = res.data;
+
+               ///this.nascimentos = await nascimentos.json();
+               ///this.state = "ready";
            } catch (err) {
                this.error = err;
                this.state = "error"
