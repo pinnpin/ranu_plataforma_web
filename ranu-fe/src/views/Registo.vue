@@ -13,8 +13,6 @@
     <v-col cols="12" md="6">
       <v-form class="ma-3" @submit.prevent="registerNascimento()" ref="addForm"> 
     
-    <v-text-field v-model="add_bebes.numero" label="Número" required>
-    </v-text-field>
      <v-text-field v-model="add_bebes.nseq" label="Número de Seq" required>
     </v-text-field>
     <v-text-field v-model="add_bebes.processo" label="Número de Processo" required>
@@ -59,6 +57,7 @@ export default ({
         lista_bebes:[],
         add_bebes: [],
         edit_bebe: [],
+        newNascimento: {},
         add: false,
         edit: false
 
@@ -83,7 +82,8 @@ export default ({
                 newNascimento.append("apgar5", this.add_bebes.apgar5);
                 
 
-                const res = await this.axios.post('/nascimento', this.newNascimento);
+                const res = await this.axios.post("http://localhost:3000/nascimento", { newNascimento
+                });
                 this.lista_bebes.push(res.data.nascimento);
                 this.$refs.addForm.reset();
                 this.add = false;

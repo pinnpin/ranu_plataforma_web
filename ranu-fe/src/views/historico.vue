@@ -5,26 +5,29 @@
     <v-app-bar app color="primary" dark>
     <v-tool-title>Hospital dos Bombados</v-tool-title>
   </v-app-bar>
-    <v-checkbox v-mode="selected" label="Historico Familiar de deficiência auditiva cogénita"
+  <form>
+ <v-checkbox label="Historico Familiar de deficiência auditiva cogénita" v-model="checkbox"
     ></v-checkbox>
-     <v-checkbox v-mode="selected" label="Infeção congénita: sífilis, toxoplasmose, rubéola, CMV e herpes"
+    <label>{{checkbox}}</label>
+     <v-checkbox label="Infeção congénita: sífilis, toxoplasmose, rubéola, CMV e herpes" v-model="checkbox1"
     ></v-checkbox>
-     <v-checkbox v-mode="selected" label="Anomalias craniofaciais"
+     <v-checkbox label="Anomalias craniofaciais" v-model="checkbox2"
     ></v-checkbox>
-     <v-checkbox v-mode="selected" label="Hiper bilirrubinemia com critérios de ensanguinho transfusão"
+     <v-checkbox label="Hiper bilirrubinemia com critérios de ensanguinho transfusão" v-model="checkbox3"
     ></v-checkbox>
-     <v-checkbox v-mode="selected" label="Baixo peso ao nascer (inferior a 1500g)"
+     <v-checkbox label="Baixo peso ao nascer (inferior a 1500g)" v-model="checkbox4"
     ></v-checkbox> 
-     <v-checkbox v-mode="selected" label="Medicação ototóxica de 5 dias"
+     <v-checkbox label="Medicação ototóxica de 5 dias" v-model="checkbox5"
     ></v-checkbox>
-    <v-checkbox v-mode="selected" label="Meningite bacteriana"
+    <v-checkbox label="Meningite bacteriana" v-model="checkbox6"
     ></v-checkbox>
-    <v-checkbox v-mode="selected" label="Índice de APGAR 0 a 4 no 1'/ 0 a 6 no 5'"
+    <v-checkbox label="Índice de APGAR 0 a 4 no 1'/ 0 a 6 no 5'" v-model="checkbox7"
     ></v-checkbox>
-    <v-checkbox v-mode="selected" label="Ventilação Mecânica de 5 dias"
+    <v-checkbox label="Ventilação Mecânica de 5 dias" v-model="checkbox8"
     ></v-checkbox>
-    <v-checkbox v-mode="selected" label="Sinais ou síndromes associadas a hipoacusia"
+    <v-checkbox label="Sinais ou síndromes associadas a hipoacusia" v-model="checkbox9"
     ></v-checkbox>
+    </form>
 
     <v-btn class="primary mt-3" justify="center" type="submit">Submeter</v-btn>
   </v-container>
@@ -35,9 +38,25 @@
 export default ({
     data() {
         return {
-            checkbox:true
+            checkbox:false,
+            checkbox1:false,
+            checkbox2:false,
+            checkbox3:false,
+            checkbox4:false,
+            checkbox5:false,
+            checkbox6:false,
+            checkbox7:false,
+            checkbox8:false,
+            checkbox9:false
+
         }
         
     },
+
+    created: async function() {
+        const res = await this.axios.post
+    }
 })
 </script>
+
+
