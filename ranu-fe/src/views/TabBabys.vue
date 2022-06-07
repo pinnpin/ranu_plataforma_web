@@ -14,17 +14,16 @@
                     <tr>
                         <th class="text-center">ID</th>
                         <th class="text-center">Nome</th>
-                        <th class="text-center">Estado</th>
+                        <th class="text-center">Fase</th>
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
-                <v-card class="ma-3" max-width="344" v-for="nascimento in nascimentosList" :key="nascimento.nseq" :nascimento="nascimento">
+                <v-card class="ma-3" max-width="" v-for="nascimento in nascimentosList" :key="nascimento.nseq" :nascimento="nascimento">
                 <tbody>
                     <tr>
-                        <td class="text-center">{{nascimento.numero}}</td>
+                        <td class="text-left">{{nascimento.numero}}</td>
                         <td class="text-center">{{nascimento.nome}}</td>
-                        <td class="text-center">1ª Fase</td>
-                        <td class="text-center"> <v-icon color="blue" medium class="mr-6" @click="seeItem(item)"> mdi-eye
+                        <td class="text-right"> <v-icon color="blue" medium class="mr-6" @click="seeBebe(nascimento.nseq)"> mdi-eye
                         </v-icon>
                         <v-icon medium class="mr-6" @click="editItem(item)"> mdi-pencil
                         </v-icon>
@@ -48,6 +47,7 @@ export default ({
    data: () => ({
        medico: {},
        nascimentosList: [],
+       nascimentosVer: {},
        alert: {show: false},
        state: "loading",
        error: ""
@@ -56,9 +56,20 @@ export default ({
        this.loadNascimentos();
    },
    methods: {
+
+       async seeBebe(nseq) {
+           try{
+               const res = await this.axios.get(`/medico/tabInicial/${nseq}`);
+               this.nascimentosVer = res.data;
+               this.edit = true;
+           } catch (error) {
+               console.log(error);
+           }
+       },
+
        async loadNascimentos() {
            try {
-               const res = await this.axios.get('http://localhost:3000/tabInicial');
+               const res = await this.axios.post('http://localhost:3000/medico/tabInicial');
                this.nascimentosList = res.data;
 
                ///this.nascimentos = await nascimentos.json();
