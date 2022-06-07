@@ -24,7 +24,7 @@ CREATE TABLE tecnico (
 
 CREATE TABLE rn_nascimentos (
     numero INTEGER,
-    nseq INTEGER,
+    nseq INTEGER PRIMARY KEY,
     processo TEXT,
     nome TEXT,
     dta_nascimento TIMESTAMP WITHOUT TIME ZONE,
@@ -76,14 +76,14 @@ CREATE TABLE rn_rastreio(
 
 CREATE TABLE rn_fatoresrisco(
     nseq INTEGER REFERENCES rn_nascimentos(nseq),
-    histfam INTEGER,
-    infecong INTEGER,
-    anomcranio INTEGER,
-    hiperbili INTEGER,
-    baixopeso INTEGER,
-    medototo INTEGER,
-    meninbacte INTEGER,
-    indexapgar INTEGER,
-    ventmec INTEGER,
-    hipoacusia INTEGER
+    histfam BOOLEAN,
+    infecong BOOLEAN,
+    anomcranio BOOLEAN,
+    hiperbili BOOLEAN,
+    baixopeso BOOLEAN,
+    medototo BOOLEAN,
+    meninbacte BOOLEAN,
+    indexapgar BOOLEAN,
+    ventmec BOOLEAN,
+    hipoacusia BOOLEAN
 );
