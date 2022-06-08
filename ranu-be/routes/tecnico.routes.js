@@ -1,3 +1,4 @@
+
 import express from "express";
 import tecnico from "../controllers/tecnico";
 
@@ -9,4 +10,3 @@ router.post('/nascimento', tecnico.registerNascimento);
 
 
 module.exports = router;
-
