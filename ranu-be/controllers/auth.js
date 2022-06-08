@@ -11,13 +11,13 @@ authentication.signUp = async (req, res) => {
         [name, email, password]
       );
       res.status(200).json({
-        message: "Successful registred professor",
+        message: "Médico registado com sucesso!",
         professor: { name, email, password },
       });
     } catch (error) {
       if (error.constraint == "medico_nome_m_key") {
         res.status(500).json({
-          message: "Someone is already using that email",
+          message: "Someone is already using that email.",
           error,
         });
       } else {

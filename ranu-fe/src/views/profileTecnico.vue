@@ -17,6 +17,8 @@
                         </v-btn></tr></h4>
                     <h4>Registar 3ª Avaliação<tr><v-btn elevation="2" fab color="primary" to="/avaliacao3_registo"> Ir
                         </v-btn></tr></h4>
+                    <h4>Apagar Nascimento<tr><v-btn elevation="2" fab color="primary" to="/delete"> Ir
+                        </v-btn></tr></h4>
                 </v-card-text>
             </v-col>
         </v-row>

@@ -14,26 +14,26 @@ tecnico.registerNascimento = async (req, res) => {
         })
     } catch (error) {
       res.status(500).json({
-          message: 'An error has occured',
+          message: 'Ocorreu um erro!',
           error
       })
   }
 };
-/*
+
 tecnico.deleteNascimento = async (req, res) => {
-  const id = req.params.id_t;
+  const id = req.params.id_t; //tem de haver alguma coisa no frontend tipo uma little text box onde o técnico insere o id
   try {
-      await pool.query('DELETE FROM rn_nascimentos WHERE nseq=$1', [id]);
+      await pool.query('DELETE FROM rn_nascimentos WHERE nseq=$1;', [id]);
       res.status(200).json({
-          message: 'Successful deleted nascimento'
+          message: 'O bebé foi apagado com sucesso!'
       })
   } catch (error) {
       res.status(500).json({
-          message: 'An error has ocurred',
+          message: 'Ocorreu um erro!',
           error
       })
   }
 }
 
-*/
+
 module.exports = tecnico;

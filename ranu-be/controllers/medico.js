@@ -13,7 +13,7 @@ medico.viewNascimentos = async (req, res) => {
         res.status(200).json(nascimentos);
     } catch (error) {
         res.status(500).json({
-            message: 'An error has ocurred',
+            message: 'Ocorreu um erro!',
             error
         });
     }
@@ -23,13 +23,13 @@ medico.viewNascimentos = async (req, res) => {
 //Ver info total do paciente
 
 medico.seeBebe = async (req, res) => {
-    const nseq = req.params.nseq;
+    //const nseq = req.params.nseq;
     try {
         const info = await (await pool.query('SELECT * FROM rn_nascimentos WHERE nseq=$1', [nseq])).rows[0];
         res.status(200).json({info});
     } catch (error) {
         res.status(500).json({
-            message: 'An error has ocurred',
+            message: 'Ocorreu um erro!',
             error
         })
     }
@@ -43,20 +43,21 @@ medico.seeBebe = async (req, res) => {
 medico.registerFatores = async (req, res) => {
     const {nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia} = req.body;
     try {
-      await pool.query('INSERT INTO rn_fatoresderisco (nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia]);
+        await pool.query('INSERT INTO rn_fatoresderisco (nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia]);
+        const fatores = await(await pool.query('SELECT * FROM rn_fatoresderisco ORDER BY nseq DESC LIMIT 1')).rows[0];
         res.status(200).json({
             message: 'Fatores de risco registados!',
             nascimento: {nseq}
         })
     } catch (error) {
       res.status(500).json({
-          message: 'An error has occured',
+          message: 'Ocorreu um erro!',
           error
       })
   }
 }
-//Fase da Avaliação FALTA LIGAR AO FRONTEND 
 
+//Fase da Avaliação FALTA LIGAR AO FRONTEND 
 medico.viewAvaliacao = async (req,res) => {
     try {
         const avaliacao1 = await pool.query('IF EXISTS (SELECT FROM rn_primeira p WHERE p.avaliacao IS NULL) THEN RETURN 0 END IF;')
@@ -67,14 +68,11 @@ medico.viewAvaliacao = async (req,res) => {
         }
     } catch (error) {
         res.status(500).json({
-            message: 'An error has ocurred',
+            message: 'Ocorreu um erro!',
             error
         })
 }
 }
-//EM QUE FASE ESTÁ A AVALIAÇÃO DO OH BABY BABY YOU KILLING MEEEEEEEEEEE
-
-
 
 //Registar Avaliações (1,2,3)
 medico.registerAvaliacao1 = async (req,res) => {
@@ -88,7 +86,7 @@ medico.registerAvaliacao1 = async (req,res) => {
             })
     } catch (error) {
         res.status(500).json({
-            message: 'An error has occured',
+            message: 'Ocorreu um erro!',
             error
         })
     }
@@ -105,7 +103,7 @@ medico.registerAvaliacao2 = async (req,res) => {
             })
     } catch (error) {
         res.status(500).json({
-            message: 'An error has occured',
+            message: 'Ocorreu um erro!',
             error
         })
     }
@@ -122,7 +120,7 @@ medico.registerAvaliacao3 = async (req,res) => {
             })
     } catch (error) {
         res.status(500).json({
-            message: 'An error has occured',
+            message: 'Ocorreu um erro!',
             error
         })
     }
