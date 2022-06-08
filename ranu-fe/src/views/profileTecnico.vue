@@ -1,3 +1,4 @@
+
 <template>
     <v-container>
         <v-row justify="center">
@@ -26,7 +27,6 @@
 </template>
 
 <script>
-
 export default {
     data: () => ({
         user: { role:"", name: "", email:""}
@@ -38,5 +38,4 @@ export default {
         }    
     }
 }
-
 </script>

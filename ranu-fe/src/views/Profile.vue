@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 export default {
     data: () => ({
         user: { role:"", name: "", email:""}
@@ -30,5 +29,4 @@ export default {
         }    
     }
 }
-
 </script>

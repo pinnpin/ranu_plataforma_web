@@ -23,12 +23,13 @@
                     <tr>
                         <td class="text-left">{{nascimento.numero}}</td>
                         <td class="text-center">{{nascimento.nome}}</td>
-                        <td class="text-right"> <v-icon color="blue" medium class="mr-6" @click="seeBebe(nascimento.nseq)"> mdi-eye
-                        </v-icon>
+                       <v-btn color="blue" small dark fab @click="$router.push(`tabInicial/${nascimento.nseq}`)">
+            <v-icon>mdi-eye</v-icon>
+          </v-btn>
                         <v-icon medium class="mr-6" @click="editItem(item)"> mdi-pencil
                         </v-icon>
                         <v-icon medium @click="deleteItem(item)"> mdi-delete
-                        </v-icon> </td>
+                        </v-icon>
                     </tr>
                     </tbody>
                     </v-card>
@@ -40,6 +41,8 @@
 </template>
 
 <script>
+import { toRefs } from "vue";
+
 
 
 
@@ -57,19 +60,10 @@ export default ({
    },
    methods: {
 
-       async seeBebe(nseq) {
-           try{
-               const res = await this.axios.get(`http://localhost:3000/medico/tabInicial/${nseq}`);
-               this.nascimentosVer = res.data;
-               this.edit = true;
-           } catch (error) {
-               console.log(error);
-           }
-       },
-
        async loadNascimentos() {
            try {
                const res = await this.axios.post('http://localhost:3000/medico/tabInicial');
+               console.log(res)
                this.nascimentosList = res.data;
 
                ///this.nascimentos = await nascimentos.json();
@@ -78,8 +72,29 @@ export default ({
                this.error = err;
                this.state = "error"
            }
-       }
-   }
+       },
+       async seeBebe(nseq) {
+            try {
+                const res = await this.axios.post(`http://localhost:3000/medico/tabInicial/${nseq}`);
+                this.edit_bebe = res.data;
+                console.log(this.edit_bebe)
+                this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+    async infoBebe() {
+        let valid = this.$refs.editForm.validate();
+        if (valid) {
+            try {
+                
+
+        } catch (error) {
+
+        }
+    }
+   }}
    
 });
+
 </script>
