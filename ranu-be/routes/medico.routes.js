@@ -7,7 +7,7 @@ router.post('/tabInicial', medico.viewNascimentos);
 
 router.post('/historico', medico.registerFatores);
 
-router.get("/tabInicial/:nseq", medico.seeBebe);
+router.post('/tabInicial/:nseq', medico.seeBebe);
 
 router.post('/avaliacao/primeira', medico.registerAvaliacao1);
 
