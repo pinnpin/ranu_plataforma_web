@@ -1,3 +1,4 @@
+
 import { json, query } from 'express';
 import { appendFile } from 'fs';
 import { ParameterStatusMessage } from 'pg-protocol/dist/messages';
@@ -23,7 +24,7 @@ medico.viewNascimentos = async (req, res) => {
 //Ver info total do paciente
 
 medico.seeBebe = async (req, res) => {
-    //const nseq = req.params.nseq;
+    const nseq = req.params.nseq;
     try {
         const info = await (await pool.query('SELECT * FROM rn_nascimentos WHERE nseq=$1', [nseq])).rows[0];
         res.status(200).json({info});
