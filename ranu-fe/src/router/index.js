@@ -49,10 +49,10 @@ component: () => import(/* webpackChunkName: "about" */ '../views/historico.vue'
 
 {
 
-path: '/infoBebe',
-name: 'InfoBebe',
-component: () => import(/* webpackChunkName: "about" */ '../views/InfoBebe.vue')
-
+path: "/tabInicial/:nseq",
+name: 'tabInicial',
+component: () => import(/* webpackChunkName: "about" */ '../views/InfoBebe.vue'),
+props: true
 },
 {
 
