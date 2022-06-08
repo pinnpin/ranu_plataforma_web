@@ -19,12 +19,13 @@ medico.viewNascimentos = async (req, res) => {
     }
 };
 
+
 //Ver info total do paciente
 
 medico.seeBebe = async (req, res) => {
-    const nseq = req.params.nseq;
+    const id = req.params.nseq;
     try {
-        const nascimentos = await (await pool.query("SELECT * FROM rn_nascimento WHERE nseq=$1", [nseq])).rows[0];
+        const nascimentos = await (await pool.query('SELECT * FROM rn_nascimento WHERE nseq=$1', [id])).rows[0];
         res.status(200).json({nascimentos});
     } catch (error) {
         res.status(500).json({
@@ -83,7 +84,7 @@ medico.registerAvaliacao1 = async (req,res) => {
         const avaliacao1 = await (await pool.query('SELECT * FROM rn_primeira ORDER BY numero DESC LIMIT 1')).rows[0];
         res.status(200).json({
                 message: 'A primeira avaliação foi registada com sucesso!',
-                data_avaliacao
+                avaliacao1
             })
     } catch (error) {
         res.status(500).json({
@@ -94,12 +95,13 @@ medico.registerAvaliacao1 = async (req,res) => {
 }
 
 medico.registerAvaliacao2 = async (req,res) => {
-    const {numero, numseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
+    const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
     try {
-        await pool.query('INSERT INTO rn_primeira (numero, numseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, numseq, avaliacao, data_avaliacao, nmec_avaliador]);
-            res.status(200).json({
+        await pool.query('INSERT INTO rn_segunda (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
+        const avaliacao2 = await (await pool.query('SELECT * FROM rn_segunda ORDER BY numero DESC LIMIT 1')).rows[0];
+        res.status(200).json({
                 message: 'A segunda avaliação foi registada com sucesso!',
-                data_avaliacao
+                avaliacao2
             })
     } catch (error) {
         res.status(500).json({
@@ -109,13 +111,14 @@ medico.registerAvaliacao2 = async (req,res) => {
     }
 }
 
-medico.registerAvaliacao3 = async (red,res) => {
-    const {numero, numseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
+medico.registerAvaliacao3 = async (req,res) => {
+    const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
     try {
-        await pool.query('INSERT INTO rn_primeira (numero, numseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, numseq, avaliacao, data_avaliacao, nmec_avaliador]);
-            res.status(200).json({
+        await pool.query('INSERT INTO rn_terceira (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
+        const avaliacao2 = await (await pool.query('SELECT * FROM rn_terceira ORDER BY numero DESC LIMIT 1')).rows[0];
+        res.status(200).json({
                 message: 'A terceira avaliação foi registada com sucesso!',
-                data_avaliacao
+                avaliacao2
             })
     } catch (error) {
         res.status(500).json({
