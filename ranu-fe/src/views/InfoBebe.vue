@@ -32,10 +32,23 @@
 
 <script>
 
-export default defineComponent({
-  setup() {
+export default ({
+  data: () => ({
     
+    edit_bebe: {}
 
-  },
+  }),
+  methods: {
+    async verBebe(nseq) {
+      try {
+        const res = await this.axios.post('http://localhost:3000/medico/tabInicial/${nseq}');
+        this.edit_bebe = res.data.info;
+        this.edit=true;
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 })
 </script>
