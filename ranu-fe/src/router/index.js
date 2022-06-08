@@ -41,6 +41,14 @@ component: () => import(/* webpackChunkName: "about" */ '../views/historico.vue'
 
 {
 
+  path: '/profileTecnico',
+  name: 'ProfileTecnico>',
+  component: () => import(/* webpackChunkName: "about" */ '../views/profileTecnico.vue')
+
+},
+
+{
+
 path: '/infoBebe',
 name: 'InfoBebe',
 component: () => import(/* webpackChunkName: "about" */ '../views/InfoBebe.vue')
@@ -51,6 +59,20 @@ component: () => import(/* webpackChunkName: "about" */ '../views/InfoBebe.vue')
   path: '/avaliacao1_registo',
   name: 'Avaliacao1',
   component: () => import(/* webpackChunkName: "about" */ '../views/RegAval1.vue')
+
+},
+{
+
+  path: '/avaliacao2_registo',
+  name: 'Avaliacao2',
+  component: () => import(/* webpackChunkName: "about" */ '../views/RegAval2.vue')
+
+},
+{
+
+  path: '/avaliacao3_registo',
+  name: 'Avaliacao3',
+  component: () => import(/* webpackChunkName: "about" */ '../views/RegAval3.vue')
 
 },
 
