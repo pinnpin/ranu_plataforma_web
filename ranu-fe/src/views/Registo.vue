@@ -84,7 +84,7 @@ export default ({
 
                 const res = await this.axios.post("http://localhost:3000/nascimento", { newNascimento
                 });
-                this.lista_bebes.push(res.data.nascimento);
+                this.lista_bebes.push(res.data);
                 this.$refs.addForm.reset();
                 this.add = false;
                 this.alert = {
