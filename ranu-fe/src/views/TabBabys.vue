@@ -59,7 +59,7 @@ export default ({
 
        async seeBebe(nseq) {
            try{
-               const res = await this.axios.get(`/medico/tabInicial/${nseq}`);
+               const res = await this.axios.get(`http://localhost:3000/medico/tabInicial/${nseq}`);
                this.nascimentosVer = res.data;
                this.edit = true;
            } catch (error) {
@@ -69,7 +69,7 @@ export default ({
 
        async loadNascimentos() {
            try {
-               const res = await this.axios.post('http://localhost:3000/avaliacao/primeira');
+               const res = await this.axios.post('http://localhost:3000/medico/tabInicial');
                this.nascimentosList = res.data;
 
                ///this.nascimentos = await nascimentos.json();

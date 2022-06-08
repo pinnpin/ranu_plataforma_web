@@ -9,6 +9,14 @@
                     <h4>Ações</h4>
                     <h4>Tabela de Pacientes<tr><v-btn elevation="2" fab color="primary" to="/tabInicial"> Ir
                         </v-btn></tr></h4>
+                    <h4>Registar Novo Paciente<tr><v-btn elevation="2" fab color="primary" to="/nascimento"> Ir
+                        </v-btn></tr></h4>
+                    <h4>Registar 1ª Avaliação<tr><v-btn elevation="2" fab color="primary" to="/avaliacao1_registo"> Ir
+                        </v-btn></tr></h4>
+                    <h4>Registar 2ª Avaliação<tr><v-btn elevation="2" fab color="primary" to="/avaliacao2_registo"> Ir
+                        </v-btn></tr></h4>
+                    <h4>Registar 3ª Avaliação<tr><v-btn elevation="2" fab color="primary" to="/avaliacao3_registo"> Ir
+                        </v-btn></tr></h4>
                 </v-card-text>
             </v-col>
         </v-row>

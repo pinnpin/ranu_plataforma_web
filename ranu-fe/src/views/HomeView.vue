@@ -141,7 +141,11 @@
               }
             } else {
               sessionStorage.setItem('session', JSON.stringify(res.data));
-              this.$router.push('/profile')
+                if (res.data.role = 'medico') {
+                  this.$router.push('/profile') 
+                } else { if(res.data.role = 'tecnico') {
+                  this.$router.push('/profileTecnico')}
+              }
             }
 
           } catch (error) {

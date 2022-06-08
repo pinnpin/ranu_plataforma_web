@@ -6,12 +6,12 @@
     <v-alert text v-model="alert.show" :type="alert.type" dismissible>{{alert.message}}
     </v-alert>
 
-    <h1 class="font-weight-light" >Registo da 1ª Avaliação</h1>
+    <h1 class="font-weight-light" >Registo da 2ª Avaliação</h1>
 
 <v-simple-table></v-simple-table>
 <v-row>
     <v-col cols="12" md="6">
-      <v-form class="ma-3" @submit.prevent="registerAval1()" ref="addForm"> 
+      <v-form class="ma-3" @submit.prevent="registerAval2()" ref="addForm"> 
     
      <v-text-field v-model="add_aval.numero" label="Número" required>
     </v-text-field>
@@ -23,12 +23,7 @@
         </v-text-field>
         <v-text-field  v-model="add_aval.nmec_avaliador" label="ID Avaliador" required>
         </v-text-field>
-        <v-text-field v-model="add_aval.opcao" label="Opção" required>
-        </v-text-field>
-        <v-text-field v-model="add_aval.data_reavaliacao"  label="Data da Reavaliação" required>
-        </v-text-field> 
-        <v-text-field v-model="add_aval.a_reavaliador" label="ID Reavaliador" required> 
-        </v-text-field>
+      
         
 <v-btn block class="success mt-3" type="submit">Submeter</v-btn>
 
@@ -54,13 +49,13 @@ export default ({
 
     }),
     methods: {
-        async registerAval1() {
+        async registerAval2() {
             let valid= this.$refs.addForm.validate();
             if (valid) {
               ///this.add_aval.id = this.tecnico.id
               try {
 
-                const res = await this.axios.post("http://localhost:3000/medico/avaliacao/primeira", this.add_aval);
+                const res = await this.axios.post("http://localhost:3000/medico/avaliacao/segunda", this.add_aval);
                 this.lista_aval.push(res.data.avaliacao1);
                 this.$refs.addForm.reset();
                 this.add = false;
