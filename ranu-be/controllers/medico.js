@@ -35,12 +35,26 @@ medico.registerFatores = async (red, res) => {
   }
 }
 
-//EM QUE FASE ESTÁ A AVALIAÇÃO DO OH BABY BABY YOU KILLING MEEEEEEEEEEE
+//Fase da Avaliação FALTA LIGAR AO FRONTEND 
 
-
+medico.viewAvaliacao = async (req,res) => {
+    try {
+        const avaliacao1 = await pool.query('IF EXISTS (SELECT FROM rn_primeira p WHERE p.avaliacao IS NULL) THEN RETURN 0 END IF;')
+        const avaliacao2 = await pool.query('IF EXISTS (SELECT FROM rn_segunda s WHERE s.avaliacao IS NULL) THEN RETURN 0 END IF;')
+        const avaliacao3 = await pool.query('IF EXISTS (SELECT FROM rn_terceira t WHERE t.avaliacao IS NULL) THEN RETURN 0 END IF;')
+        if (avaliacao1 == "0" || avaliacao2 == "0" || avaliacao3 == "0") {
+            res.status(200).json(avaliacao1 || avaliacao2 || avaliacao3);
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has ocurred',
+            error
+        })
+}
+}
 
 //Registar Avaliações (1,2,3)
-medico.registerAvaliacao1 = async (red,res) => {
+medico.registerAvaliacao1 = async (req,res) => {
     const {numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador} = req.body;
     try {
         await pool.query('INSERT INTO rn_primeira (numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [numero, numseq, avaliacao, data_avaliacao, nmec_avaliador, opcao, data_reavaliacao, a_reavaliador]);
@@ -56,7 +70,7 @@ medico.registerAvaliacao1 = async (red,res) => {
     }
 }
 
-medico.registerAvaliacao2 = async (red,res) => {
+medico.registerAvaliacao2 = async (req,res) => {
     const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
     try {
         await pool.query('INSERT INTO rn_segunda (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
@@ -72,7 +86,7 @@ medico.registerAvaliacao2 = async (red,res) => {
     }
 }
 
-medico.registerAvaliacao3 = async (red,res) => {
+medico.registerAvaliacao3 = async (req,res) => {
     const {numero, nseq, avaliacao, data_avaliacao, nmec_avaliador} = req.body;
     try {
         await pool.query('INSERT INTO rn_terceira (numero, nseq, avaliacao, data_avaliacao, nmec_avaliador) VALUES ($1, $2, $3, $4, $5)', [numero, nseq, avaliacao, data_avaliacao, nmec_avaliador]);
