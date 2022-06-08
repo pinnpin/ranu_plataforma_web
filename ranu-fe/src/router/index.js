@@ -46,6 +46,13 @@ name: 'InfoBebe',
 component: () => import(/* webpackChunkName: "about" */ '../views/InfoBebe.vue')
 
 },
+{
+
+  path: '/avaliacao1_registo',
+  name: 'Avaliacao1',
+  component: () => import(/* webpackChunkName: "about" */ '../views/RegAval1.vue')
+
+},
 
 ]
 
