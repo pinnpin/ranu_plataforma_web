@@ -23,10 +23,10 @@ medico.viewNascimentos = async (req, res) => {
 //Ver info total do paciente
 
 medico.seeBebe = async (req, res) => {
-    const id = req.params.nseq;
+    const nseq = req.params.nseq;
     try {
-        const nascimentos = await (await pool.query('SELECT * FROM rn_nascimento WHERE nseq=$1', [id])).rows[0];
-        res.status(200).json({nascimentos});
+        const info = await (await pool.query('SELECT * FROM rn_nascimentos WHERE nseq=$1', [nseq])).rows[0];
+        res.status(200).json({info});
     } catch (error) {
         res.status(500).json({
             message: 'An error has ocurred',
