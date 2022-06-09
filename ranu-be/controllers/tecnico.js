@@ -36,4 +36,5 @@ tecnico.deleteNascimento = async (req, res) => {
 }
 
 
+
 module.exports = tecnico;

@@ -44,11 +44,11 @@ medico.seeBebe = async (req, res) => {
 medico.registerFatores = async (req, res) => {
     const {nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia} = req.body;
     try {
-        await pool.query('INSERT INTO rn_fatoresderisco (nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia]);
-        const fatores = await(await pool.query('SELECT * FROM rn_fatoresderisco ORDER BY nseq DESC LIMIT 1')).rows[0];
+        await pool.query('INSERT INTO rn_fatoresrisco (nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [nseq, histfam, infecong, anomcranio, hiperbili, baixopeso, medototo, meninbacte, indexapgar, ventmec, hipoacusia]);
+        const fatores = await(await pool.query('SELECT * FROM rn_fatoresrisco ORDER BY nseq DESC LIMIT 1')).rows[0];
         res.status(200).json({
             message: 'Fatores de risco registados!',
-            nascimento: {nseq}
+            fatores
         })
     } catch (error) {
       res.status(500).json({
@@ -131,7 +131,7 @@ medico.registerAvaliacao3 = async (req,res) => {
 medico.seeAvaliacao1 = async (req, res) => {
     const nseq = req.params.nseq;
     try {
-        const info1 = await (await pool.query('SELECT * FROM rn_primeira WHERE nseq=$1', [nseq])).rows[0];
+        const info1 = await (await pool.query('SELECT * FROM rn_primeira WHERE numseq=$1', [nseq])).rows[0];
         res.status(200).json({info1});
     } catch (error) {
         res.status(500).json({
@@ -144,7 +144,7 @@ medico.seeAvaliacao1 = async (req, res) => {
 medico.seeAvaliacao2 = async (req, res) => {
     const nseq = req.params.nseq;
     try {
-        const info2 = await (await pool.query('SELECT * FROM rn_segunda WHERE nseq=$1', [nseq])).rows[0];
+        const info2 = await (await pool.query('SELECT * FROM rn_segunda WHERE numseq=$1', [nseq])).rows[0];
         res.status(200).json({info2});
     } catch (error) {
         res.status(500).json({
@@ -157,7 +157,7 @@ medico.seeAvaliacao2 = async (req, res) => {
 medico.seeAvaliacao3 = async (req, res) => {
     const nseq = req.params.nseq;
     try {
-        const info3 = await (await pool.query('SELECT * FROM rn_terceira WHERE nseq=$1', [nseq])).rows[0];
+        const info3 = await (await pool.query('SELECT * FROM rn_terceira WHERE numseq=$1', [nseq])).rows[0];
         res.status(200).json({info3});
     } catch (error) {
         res.status(500).json({
@@ -166,5 +166,7 @@ medico.seeAvaliacao3 = async (req, res) => {
         })
     }
 }
+
+
 
 module.exports = medico;
