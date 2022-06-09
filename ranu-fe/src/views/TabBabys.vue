@@ -83,6 +83,37 @@ export default ({
                 console.log(error);
             }
     },
+        async seeAvaliacao1(nseq) {
+            try {
+                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/primeira/${nseq}`);
+                this.edit_avaliacao = res.data;
+                console.log(this.edit_avaliacao)
+                this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+        async seeAvaliacao2(nseq) {
+            try {
+                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/segunda/${nseq}`);
+                this.edit_avaliacao = res.data;
+                console.log(this.edit_avaliacao)
+                this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+    async seeAvaliacao3(nseq) {
+            try {
+                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/terceira/${nseq}`);
+                this.edit_avaliacao = res.data;
+                console.log(this.edit_avaliacao)
+                this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+    
        async deleteNascimento(nseq) {
             try {
                 const res = await this.axios.delete(`http://localhost:3000/delete/${nseq}`);
