@@ -120,7 +120,6 @@
     </v-simple-table>
     </v-row>
 </div>
-</v-row>
 </v-container>
 
 
