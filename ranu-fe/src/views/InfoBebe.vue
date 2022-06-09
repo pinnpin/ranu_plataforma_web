@@ -61,7 +61,7 @@
     <v-simple-table fixed-header>
                 <thead>
                     <tr>
-                        <th class="text-center">Avalicao</th>
+                        <th class="text-center">Avaliacao</th>
                         <th class="text-center">Data da Avaliação</th>
                         <th class="text-center">Número Mecanográfico do Avaliador</th>
 
@@ -86,6 +86,30 @@
                         <td>{{edit1.data_avaliacao}}</td>
 
                         <td>{{edit1.nmec_avalicao}}</td>
+
+              
+     </tr>
+     <tr v-for="edit2 in edit_aval2" :key="edit2.data_avaliacao">
+    
+               
+
+                        <td class="text-center">{{edit2.avaliacao}}</td>
+
+                        <td>{{edit2.data_avaliacao}}</td>
+
+                        <td>{{edit2.nmec_avalicao}}</td>
+
+              
+     </tr>
+     <tr v-for="edit3 in edit_aval3" :key="edit3.data_avaliacao">
+    
+               
+
+                        <td class="text-center">{{edit3.avaliacao}}</td>
+
+                        <td>{{edit3.data_avaliacao}}</td>
+
+                        <td>{{edit3.nmec_avalicao}}</td>
 
               
      </tr>
@@ -150,7 +174,32 @@ export default ({
             }
     },
 
-    
+    async seeAval2() {
+            try {
+              const nseq = this.$route.params
+              console.log(nseq.nseq)
+              const res = await this.axios.post(`http://localhost:3000/medico/tabInicial/aval2/${nseq.nseq}`);
+              console.log(res)
+              this.edit_aval2 = res.data;
+              console.log(this.edit_aval2)
+              this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+    async seeAval3() {
+            try {
+              const nseq = this.$route.params
+              console.log(nseq.nseq)
+              const res = await this.axios.post(`http://localhost:3000/medico/tabInicial/aval3/${nseq.nseq}`);
+              console.log(res)
+              this.edit_aval3 = res.data;
+              console.log(this.edit_aval3)
+              this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
   }
 })
 </script>
