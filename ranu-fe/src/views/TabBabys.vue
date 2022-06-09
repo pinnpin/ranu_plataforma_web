@@ -83,17 +83,21 @@ export default ({
                 console.log(error);
             }
     },
-    async infoBebe() {
-        let valid = this.$refs.editForm.validate();
-        if (valid) {
+       async deleteNascimento(nseq) {
             try {
-                
-
-        } catch (error) {
-
-        }
-    }
-   }}
+                const res = await this.axios.delete(`http://localhost:3000/delete/${nseq}`);
+                const index = this.nascimentosList.findIndex(c => c.nseq == nseq);
+                this.nascimentosList.splice(index, 1);
+                this.alert = {
+                show: true,
+                type: "info",
+                message: res.data.message
+                };
+            } catch (error) {
+                console.log(error);
+            }
+            }
+   }
    
 });
 
