@@ -127,5 +127,44 @@ medico.registerAvaliacao3 = async (req,res) => {
     }
 }
 
+//Ver info Avaliações
+medico.seeAvaliacao1 = async (req, res) => {
+    const nseq = req.params.nseq;
+    try {
+        const info1 = await (await pool.query('SELECT * FROM rn_primeira WHERE nseq=$1', [nseq])).rows[0];
+        res.status(200).json({info1});
+    } catch (error) {
+        res.status(500).json({
+            message: 'Ocorreu um erro!',
+            error
+        })
+    }
+}
+
+medico.seeAvaliacao2 = async (req, res) => {
+    const nseq = req.params.nseq;
+    try {
+        const info2 = await (await pool.query('SELECT * FROM rn_segunda WHERE nseq=$1', [nseq])).rows[0];
+        res.status(200).json({info2});
+    } catch (error) {
+        res.status(500).json({
+            message: 'Ocorreu um erro!',
+            error
+        })
+    }
+}
+
+medico.seeAvaliacao3 = async (req, res) => {
+    const nseq = req.params.nseq;
+    try {
+        const info3 = await (await pool.query('SELECT * FROM rn_terceira WHERE nseq=$1', [nseq])).rows[0];
+        res.status(200).json({info3});
+    } catch (error) {
+        res.status(500).json({
+            message: 'Ocorreu um erro!',
+            error
+        })
+    }
+}
 
 module.exports = medico;
