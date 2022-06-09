@@ -33,7 +33,7 @@ const routes = [
 },
 {
 
-path: '/historico',
+path: '/historico/:nseq',
 name: 'Historico',
 component: () => import(/* webpackChunkName: "about" */ '../views/historico.vue')
 
@@ -75,6 +75,8 @@ props: true
   component: () => import(/* webpackChunkName: "about" */ '../views/RegAval3.vue')
 
 },
+
+
 
 ]
 
