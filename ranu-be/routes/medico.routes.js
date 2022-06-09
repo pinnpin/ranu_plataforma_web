@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/tabInicial', medico.viewNascimentos);
 
-router.post('/historico', medico.registerFatores);
+router.post('/historico/:nseq', medico.registerFatores);
 
 router.post('/tabInicial/:nseq', medico.seeBebe);
 
@@ -15,10 +15,11 @@ router.post('/avaliacao/segunda', medico.registerAvaliacao2);
 
 router.post('/avaliacao/terceira', medico.registerAvaliacao3);
 
-router.post('/avaliacao/primeira/:nseq', medico.seeAvaliacao1);
+router.post('/tabInicial/aval1/:nseq', medico.seeAvaliacao1);
 
-router.post('/avaliacao/segunda/:nseq', medico.seeAvaliacao2);
+router.post('/tabInicial/aval2/:nseq', medico.seeAvaliacao2);
 
-router.post('/avaliacao/terceira/:nseq', medico.seeAvaliacao3);
+router.post('/tabInicial/aval3/:nseq', medico.seeAvaliacao3);
+
 
 module.exports = router;
