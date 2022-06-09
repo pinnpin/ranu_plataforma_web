@@ -141,9 +141,9 @@
               }
             } else {
               sessionStorage.setItem('session', JSON.stringify(res.data));
-                if (res.data.role = 'medico') {
+                if (res.data.role == 'medico') {
                   this.$router.push('/profile') 
-                } else { if(res.data.role = 'tecnico') {
+                } else { if(res.data.role == 'tecnico') {
                   this.$router.push('/profileTecnico')}
               }
             }
