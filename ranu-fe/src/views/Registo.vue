@@ -1,55 +1,50 @@
 <template>
 <v-container>
   <v-app-bar app color="primary" dark>
-    <v-tool-title>Hospital dos Bombados</v-tool-title>
+    <v-tool-title>Hospital de Braga</v-tool-title>
   </v-app-bar>
-    <v-alert text v-model="alert.show" :type="alert.type" dismissible>{{alert.message}}
-    </v-alert>
-
-    <h1 class="font-weight-light" >Novo Registo</h1>
-
-<v-simple-table></v-simple-table>
-<v-row>
+  
+<v-col class="text-center" md="2" sm="2"> </v-col>
+<v-card class="mx-auto" max-width="420" outlined color="#1E88E5">
+    <v-row justify="center">
+      <v-card-title class="white--text" > Registo </v-card-title>
+    </v-row>
+</v-card> <br>
+<v-row justify="center" >
     <v-col cols="12" md="6">
-      <v-form ref="addForm" @submit.prevent="registerNascimento()" class="ma-3" > 
-    
-    <v-text-field v-model="add_bebes.nseq" label="Número de Seq" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.processo" label="Número de Processo" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.nome" label="Nome" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.dta_nascimento" label="Data de Nascimento" required>
-    </v-text-field>
-    <v-text-field  v-model="add_bebes.hora" label="Hora" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.gestacao" label="Gestação" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.peso"  label="Peso" required>
-    </v-text-field> 
-    <v-text-field v-model="add_bebes.sexo" label="Sexo" required> 
-    </v-text-field>
-    <v-text-field v-model="add_bebes.purperio"  label="Purpério" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.local_nasc"  label="Local de Nascimento" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.apgar1"  label="APGAR1" required>
-    </v-text-field>
-    <v-text-field v-model="add_bebes.apgar5"  label="APGAR5" required>
-    </v-text-field>
-
-
-
-<v-btn block class="success mt-3" type="submit">Submeter</v-btn>
-
-</v-form>
-<v-btn to="/profile" elevation="2" color="primary" outlined >Voltar à Pagina Inicial</v-btn>
-
- </v-col>
-</v-row>
+        <v-form class="ma-3" @submit.prevent="registerNascimento()" ref="addForm"> 
+        <v-text-field v-model="add_bebes.numero" label="Número" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.nseq" label="Número de Seq" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.processo" label="Número de Processo" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.nome" label="Nome" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.dta_nascimento" label="Data de Nascimento" required>
+        </v-text-field>
+        <v-text-field  v-model="add_bebes.hora" label="Hora" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.gestacao" label="Gestação" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.peso"  label="Peso" required>
+        </v-text-field> 
+        <v-text-field v-model="add_bebes.sexo" label="Sexo" required> 
+        </v-text-field>
+        <v-text-field v-model="add_bebes.purperio"  label="Purpério" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.local_nasc"  label="Local de Nascimento" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.apgar1"  label="APGAR1" required>
+        </v-text-field>
+        <v-text-field v-model="add_bebes.apgar5"  label="APGAR5" required>
+        </v-text-field>
+        </v-form>
+      <v-btn block class="success mt-3" type="submit">Submeter</v-btn>
+    </v-col>
+  </v-row>
 </v-container>
 </template>
-
 <script>
 
 export default ({

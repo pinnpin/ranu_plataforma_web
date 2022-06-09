@@ -26,10 +26,9 @@
                        <v-btn color="blue" small dark fab @click="$router.push(`tabInicial/${nascimento.nseq}`)">
             <v-icon>mdi-eye</v-icon>
           </v-btn>
-                        <v-icon medium class="mr-6" @click="editItem(item)"> mdi-pencil
-                        </v-icon>
-                        <v-icon medium @click="deleteItem(item)"> mdi-delete
-                        </v-icon>
+            <v-btn color="blue" small dark fab @click="$router.push(`historico/${nascimento.nseq}`)">
+            <v-icon>mdi-pencil</v-icon>     </v-btn>
+            <v-icon medium @click="deleteNascimento(nascimento.nseq)"> mdi-delete </v-icon>
                     </tr>
                     </tbody>
                     </v-card>
@@ -83,40 +82,9 @@ export default ({
                 console.log(error);
             }
     },
-        async seeAvaliacao1(nseq) {
+     async deleteNascimento(nseq) {
             try {
-                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/primeira/${nseq}`);
-                this.edit_avaliacao = res.data;
-                console.log(this.edit_avaliacao)
-                this.edit = true;
-            } catch (error) {
-                console.log(error);
-            }
-    },
-        async seeAvaliacao2(nseq) {
-            try {
-                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/segunda/${nseq}`);
-                this.edit_avaliacao = res.data;
-                console.log(this.edit_avaliacao)
-                this.edit = true;
-            } catch (error) {
-                console.log(error);
-            }
-    },
-    async seeAvaliacao3(nseq) {
-            try {
-                const res = await this.axios.post(`http://localhost:3000/medico//avaliacao/terceira/${nseq}`);
-                this.edit_avaliacao = res.data;
-                console.log(this.edit_avaliacao)
-                this.edit = true;
-            } catch (error) {
-                console.log(error);
-            }
-    },
-    
-       async deleteNascimento(nseq) {
-            try {
-                const res = await this.axios.delete(`http://localhost:3000/delete/${nseq}`);
+                const res = await this.axios.delete(`http://localhost:3000/tecnico/delete/${nseq}`);
                 const index = this.nascimentosList.findIndex(c => c.nseq == nseq);
                 this.nascimentosList.splice(index, 1);
                 this.alert = {

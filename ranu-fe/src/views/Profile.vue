@@ -9,8 +9,7 @@
                     <h4>Ações</h4>
                     <h4>Tabela de Pacientes<tr><v-btn elevation="2" fab color="primary" to="/tabInicial"> Ir
                         </v-btn></tr></h4>
-                    <h4>Registar Fatores de Risco<tr><v-btn elevation="2" fab color="primary" to="/historico"> Ir
-                        </v-btn></tr></h4>
+
                 </v-card-text>
             </v-col>
         </v-row>

@@ -30,25 +30,72 @@
   </v-simple-table>
   
   <v-simple-table> 
+    <template v-slot:default>
+  <tbody>
+    <tr v-for="edit in edit_bebe" :key="edit.nseq">
     
-    <v-card class="ma-3" max-width="" v-for="edit in edit_bebe" :key="edit.nseq">
-               <tbody>
-               <tr>
-                        <th class="text-left">{{edit.numero}}</th>
-                        <td class="text-center">{{edit.nseq}}</td>
-                        <td class="text-left">{{edit.nome}}</td>
-                        <td class="text-center">{{edit.dta_nascimento}}</td>
-                        <td class="text-left">{{edit.hora}}</td>
-                        <td class="text-center">{{edit.gestacao}}</td>
-                        <td class="text-left">{{edit.peso}}</td>
-                        <td class="text-center">{{edit.sexo}}</td>
-                       
-                    </tr>
-                    </tbody>
-                    </v-card>
                
-                
+
+                        <td>{{edit.numero}}</td>
+
+                        <td>{{edit.nseq}}</td>
+
+                        <td>{{edit.nome}}</td>
+                        <td>{{edit.dta_nascimento}}</td>
+                        <td>{{edit.hora}}</td>
+                        <td>{{edit.gestacao}}</td>
+                        <td>{{edit.peso}}</td>
+                        <td>{{edit.sexo}}</td>
+                       
+              
+     </tr>
+    </tbody>
+           
+               
+                </template>
     </v-simple-table>
+    </v-row>
+
+
+    <v-row justify="center" md="8" sm="8">
+    <v-simple-table fixed-header>
+                <thead>
+                    <tr>
+                        <th class="text-center">Avalicao</th>
+                        <th class="text-center">Data da Avaliação</th>
+                        <th class="text-center">Número Mecanográfico do Avaliador</th>
+
+                    </tr>
+                </thead>
+               
+  </v-simple-table>
+    </v-row>
+  <div>
+  
+    <v-row>
+
+  <v-simple-table> 
+    <template v-slot:default>
+  <tbody>
+    <tr v-for="edit1 in edit_aval1" :key="edit1.data_avaliacao">
+    
+               
+
+                        <td class="text-center">{{edit1.avaliacao}}</td>
+
+                        <td>{{edit1.data_avaliacao}}</td>
+
+                        <td>{{edit1.nmec_avalicao}}</td>
+
+              
+     </tr>
+    </tbody>
+           
+               
+                </template>
+    </v-simple-table>
+    </v-row>
+</div>
 </v-row>
 </v-container>
 
@@ -64,13 +111,15 @@ export default ({
     medico: {},
     edit_bebe: [],
     edit: false,
+    edit_aval1: [],
+    edit_aval2: [],
+    edit_aval3: [],
 
-
-    
 
   }),
   created() {
        this.seeBebe();
+       this.seeAval1();
    },
   methods: {
 
@@ -79,16 +128,29 @@ export default ({
               //const route = useRoute();
               //console.log(route.query);
               const nseq = this.$route.params
-              console.log(nseq.nseq)
               const res = await this.axios.post(`http://localhost:3000/medico/tabInicial/${nseq.nseq}`);
-              console.log(res)
               this.edit_bebe = res.data;
-              console.log(this.edit_bebe)
               this.edit = true;
             } catch (error) {
                 console.log(error);
             }
     },
+
+    async seeAval1() {
+            try {
+              const nseq = this.$route.params
+              console.log(nseq.nseq)
+              const res = await this.axios.post(`http://localhost:3000/medico/tabInicial/aval1/${nseq.nseq}`);
+              console.log(res)
+              this.edit_aval1 = res.data;
+              console.log(this.edit_aval1)
+              this.edit = true;
+            } catch (error) {
+                console.log(error);
+            }
+    },
+
+    
   }
 })
 </script>
