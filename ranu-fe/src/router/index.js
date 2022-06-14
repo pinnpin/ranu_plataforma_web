@@ -26,6 +26,14 @@ const routes = [
 
 {
 
+  path: '/tabInicialMed',
+  name: 'TabelaInicialMedico',
+  component: () => import(/* webpackChunkName: "about" */ '../views/TabInicialMed.vue')
+
+},
+
+{
+
   path: '/nascimento',
   name: 'Nascimentos',
   component: () => import(/* webpackChunkName: "about" */ '../views/Registo.vue')
