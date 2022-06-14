@@ -12,7 +12,7 @@
     <template v-slot:top>
 
       <v-row align="center" justify="space-around">
-
+     
       <v-btn color="primary" dark class="mb-2" @click="$router.push('/nascimento')"> Criar novo registo</v-btn>
 
       <v-btn color="primary" dark class="mb-2" @click="$router.push('/avaliacao1_registo')"> Registar 1ª Avaliação</v-btn>
@@ -26,6 +26,11 @@
     <template v-slot:item.actions="{ nseq }">
       <v-icon small class="mr-2" @click="deleteNascimento(nseq)"> mdi-delete </v-icon>
     </template>
+
+    <template v-slot:item.fase="{ fase_atual }">
+
+
+      </template>
 
   </v-data-table>
 
@@ -62,20 +67,26 @@ export default {
   created() {
 
     this.loadNascimentos();
+    this.getInf();
 
   },
 
 
   methods: {
 
-    async getInfo() {
-      this.user = JSON.parse(sessionStorage.getItem('session'));
-      console.log(this.user.name)
-      if (this.user == null) {
-        this.$router.push('/');
-      }
+     async getInfo() {
+            try {
+                this.user = JSON.parse(sessionStorage.getItem('session'));
+                console.log(user)
+                if (this.user == null) {
+                    this.$router.push('/');
+                }
+            } catch (err) {
+                this.error = err;
+                this.state = "error"
+            }
 
-    },
+        },
 
     async openDetails(nascimentosList) {
       try {
