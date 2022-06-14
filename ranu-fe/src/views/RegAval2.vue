@@ -1,7 +1,7 @@
 <template>
 <v-container>
   <v-app-bar app color="primary" dark>
-    <v-tool-title>Hospital de Braga</v-tool-title>
+    <v-tool-title>Hospital dos Bombados</v-tool-title>
   </v-app-bar>
     <v-alert text v-model="alert.show" :type="alert.type" dismissible>{{alert.message}}
     </v-alert>

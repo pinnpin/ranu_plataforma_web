@@ -1,7 +1,7 @@
 <template>
 <v-container>
   <v-app-bar app color="primary" dark>
-    <v-tool-title>Hospital dos Bombados</v-tool-title>
+    <v-tool-title>Hospital de Braga</v-tool-title>
   </v-app-bar>
   <v-alert text v-model="alert.show" :type="alert.type" dismissible>{{alert.message}}
   </v-alert>
@@ -142,9 +142,9 @@
             } else {
               sessionStorage.setItem('session', JSON.stringify(res.data));
                 if (res.data.role == 'medico') {
-                  this.$router.push('/profile') 
+                  this.$router.push('/tabInicialMed') 
                 } else { if(res.data.role == 'tecnico') {
-                  this.$router.push('/profileTecnico')}
+                  this.$router.push('/tabInicial')}
               }
             }
 

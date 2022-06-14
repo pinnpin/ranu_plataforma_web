@@ -23,9 +23,9 @@
 
 <v-card class="mx-auto" max-width="500" >
 
- <v-checkbox label="Historico Familiar de deficiência auditiva cogénita" v-model="checkbox" value="true"
+ <v-checkbox label="Historico Familiar de deficiência auditiva cogénita" v-model="info.checkbox" value="true"
     ></v-checkbox>
-    <label>{{checkbox}}</label>
+
      <v-checkbox label="Infeção congénita: sífilis, toxoplasmose, rubéola, CMV e herpes" v-model="info.checkbox1" value="true"
     ></v-checkbox>
      <v-checkbox label="Anomalias craniofaciais" v-model="info.checkbox2" value="true"
@@ -93,6 +93,7 @@ export default ({
                     console.log(nseq.nseq)
                     const res = await this.axios.post(`http://localhost:3000/medico/historico/${nseq.nseq}`, this.info);
                     this.lista_info.push(res.data.fatores);
+                    console.log(this.lista_info);
                     this.$refs.addForm.reset();
                     this.add=false;
                     this.alert = {
