@@ -21,5 +21,6 @@ router.post('/tabInicial/aval2/:nseq', medico.seeAvaliacao2);
 
 router.post('/tabInicial/aval3/:nseq', medico.seeAvaliacao3);
 
+router.post('/tabInicial/fase', medico.viewAvaliacao);
 
 module.exports = router;
