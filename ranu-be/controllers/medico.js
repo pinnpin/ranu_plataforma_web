@@ -38,7 +38,20 @@ medico.seeBebe = async (req, res) => {
 
 // Apagar info bebe
 
-
+medico.deleteNascimento = async (req, res) => {
+    const nseq = req.params.nseq;
+    try {
+        await pool.query('DELETE FROM rn_nascimentos WHERE nseq=$1;', [nseq]);
+        res.status(200).json({
+            message: 'O nascimento foi apagado com sucesso!'
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: 'Ocorreu um erro!',
+            error
+        })
+    }
+}
 
 //Registar fatores de risco
 medico.registerFatores = async (req, res) => {

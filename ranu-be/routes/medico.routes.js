@@ -23,4 +23,6 @@ router.post('/tabInicial/aval3/:nseq', medico.seeAvaliacao3);
 
 router.post('/tabInicial/fase', medico.viewAvaliacao);
 
+router.delete('/delete/:nseq', medico.deleteNascimento);
+
 module.exports = router;

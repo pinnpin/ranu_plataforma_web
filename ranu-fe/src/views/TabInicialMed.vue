@@ -123,7 +123,7 @@ export default {
 
         async deleteNascimento(nseq) {
             try {
-                const res = await this.axios.delete(`http://localhost:3000/tecnico/delete/${nseq}`);
+                const res = await this.axios.delete(`http://localhost:3000/medico/delete/${nseq}`);
                 const index = this.nascimentosList.findIndex(c => c.nseq == nseq);
                 this.nascimentosList.splice(index, 1);
                 this.alert = {
