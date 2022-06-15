@@ -10,13 +10,8 @@ const routes = [
     name: 'home',
     component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue')
 
-  }, {
-
-  path: '/profile',
-  name: 'Profile',
-  component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
-
-}, {
+  }, 
+   {
 
   path: '/tabInicial',
   name: 'TabelaInicial',
@@ -44,14 +39,6 @@ const routes = [
 path: '/historico/:nseq',
 name: 'Historico',
 component: () => import(/* webpackChunkName: "about" */ '../views/historico.vue')
-
-},
-
-{
-
-  path: '/profileTecnico',
-  name: 'ProfileTecnico>',
-  component: () => import(/* webpackChunkName: "about" */ '../views/profileTecnico.vue')
 
 },
 
