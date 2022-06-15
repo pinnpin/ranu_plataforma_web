@@ -42,7 +42,7 @@
     ></v-checkbox>
     <v-checkbox label="Ventilação Mecânica de 5 dias" v-model="info.checkbox8" value="true"
     ></v-checkbox>
-    <v-checkbox label="Sinais ou síndromes associadas a hipoacusia" v-model="info.checkbox9"
+    <v-checkbox label="Sinais ou síndromes associadas a hipoacusia" v-model="info.checkbox9" value="true"
     ></v-checkbox>
     
     </v-card>
@@ -63,25 +63,15 @@
 <script>
 
 export default ({
-    data() {
-        return {
+    data: () => ({
+       
             info: {},
-            checkbox:false,
-            checkbox1:false,
-            checkbox2:false,
-            checkbox3:false,
-            checkbox4:false,
-            checkbox5:false,
-            checkbox6:false,
-            checkbox7:false,
-            checkbox8:false,
-            checkbox9:false,
             lista_info:[],
             add: false
 
-        }
         
-    },
+        
+    }),
 
     methods: {
         
@@ -90,10 +80,11 @@ export default ({
             if (valid) {
                 try {
                     const nseq = this.$route.params
-                    console.log(nseq.nseq)
+                    console.log(nseq)
                     const res = await this.axios.post(`http://localhost:3000/medico/historico/${nseq.nseq}`, this.info);
-                    this.lista_info.push(res.data.fatores);
-                    console.log(this.lista_info);
+                    console.log(res)
+                    this.lista_info.push(res.data.fatores && nseq.nseq);
+                    console.log(this.lista_info)                
                     this.$refs.addForm.reset();
                     this.add=false;
                     this.alert = {
@@ -130,5 +121,4 @@ export default ({
 )
 
 </script>
-
 

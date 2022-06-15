@@ -1,24 +1,30 @@
 <template>
 
     <v-data-table :headers="headers" :items="nascimentosList" :items-per-page="15" class="elevation-1"
-        @click:row="openDetails">
+     :search="search">
 
         <template v-slot:top>
             <v-app-bar app color="primary" dark>
                 <v-tool-title>Hospital de Braga</v-tool-title>
             </v-app-bar>
             <h2 class="font-weight-light">Bem-vindo(a), {{ user.name }}</h2>
+            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+            </v-text-field>
             <v-spacer></v-spacer>
-
-
         </template>
 
-        <template v-slot:item.actions="{ nascimentosList }">
-
-            <v-icon small class="mr-2" @click="$router.push(`historico/${nseq}`)">
-                mdi-pencil</v-icon>
-            <v-icon small class="mr-2" @click="deleteNascimento(nascimentosList)"> mdi-delete </v-icon>
-
+        <template v-slot:item.actions="{ item }">
+            <div class="text-truncate">
+                <v-icon small class="mr-2" @click="historico(item)" color="primary">
+                    mdi-pencil
+                </v-icon>
+                <v-icon small class="mr-2" @click="deleteNascimento(item)" color="pink">
+                    mdi-delete
+                </v-icon>
+                <v-icon small class="mr-2" @click="openDetails(item)" color="blue">
+                    mdi-eye
+                </v-icon>
+            </div>
         </template>
 
         <template v-slot:item.fase="{ fase_atual }">
@@ -39,6 +45,7 @@ import { toRefs } from "vue";
 export default {
     data() {
         return {
+            search: "",
             headers: [
                 {
                     text: 'Número',
@@ -63,6 +70,7 @@ export default {
 
         this.loadNascimentos();
         this.getInfo();
+        this.historico();
 
     },
 
@@ -71,7 +79,7 @@ export default {
 
         async getFase() {
 
-            
+
 
         },
 
@@ -113,6 +121,7 @@ export default {
 
         async historico(nascimentosList) {
             try {
+                console.log(this.nascimentosList.nseq)
                 this.$router.push(`historico/${nascimentosList.nseq}`);
             } catch (err) {
                 this.error = err;
@@ -121,16 +130,19 @@ export default {
 
         },
 
-        async deleteNascimento(nseq) {
+        async deleteNascimento(nascimentosList) {
             try {
-                const res = await this.axios.delete(`http://localhost:3000/medico/delete/${nseq}`);
+                if (confirm('Tem a certeza que pretende apagar este registo?')) {
+                const res = await this.axios.delete(`http://localhost:3000/medico/delete/${nascimentosList.nseq}`);
+                window.location.reload();
                 const index = this.nascimentosList.findIndex(c => c.nseq == nseq);
                 this.nascimentosList.splice(index, 1);
-                this.alert = {
-                    show: true,
-                    type: "info",
-                    message: res.data.message
-                };
+                }
+                ///this.alert = {
+                ///    show: true,
+                ///    type: "info",
+                ///    message: res.data.message
+            
             } catch (error) {
                 console.log(error);
             }
