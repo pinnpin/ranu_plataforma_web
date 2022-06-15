@@ -2,60 +2,78 @@
     <v-container class="px-0" fluid>
         <v-card class="mx-auto" max-width="500" outlined color="#1E88E5">
             <v-row justify="center">
-                <v-card-title class="white--text" > Histórico do paciente </v-card-title>
+                <v-card-title class="white--text"> Histórico do paciente </v-card-title>
             </v-row>
         </v-card> <br>
-        <br>    
-        <v-card class="mx-auto" max-width="500" >
+        <br>
+        <v-card class="mx-auto" max-width="500">
             <v-row justify="center">
                 <h5> Assinale o que se aplica ao paciente </h5>
-             </v-row>
+            </v-row>
         </v-card>
-        
+
         <v-app-bar app color="primary" dark>
             <v-tool-title>Hospital de Braga</v-tool-title>
         </v-app-bar>
-        <v-form ref="addForm" @submit.prevent="registerHistorico()" class="ma-3" > 
+        <v-form ref="addForm" @submit.prevent="registerHistorico()" class="ma-3">
 
-        <v-row justify="center">
-            <v-col  class="text-center" md="6">
-                <br>
+            <v-row justify="center">
+                <v-col class="text-center" md="6">
+                    <br>
 
-<v-card class="mx-auto" max-width="500" >
+                    <v-card class="mx-auto" max-width="500">
 
- <v-checkbox label="Historico Familiar de deficiência auditiva cogénita" v-model="info.checkbox" value="true"
-    ></v-checkbox>
 
-     <v-checkbox label="Infeção congénita: sífilis, toxoplasmose, rubéola, CMV e herpes" v-model="info.checkbox1" value="true"
-    ></v-checkbox>
-     <v-checkbox label="Anomalias craniofaciais" v-model="info.checkbox2" value="true"
-    ></v-checkbox>
-     <v-checkbox label="Hiper bilirrubinemia com critérios de ensanguinho transfusão" v-model="info.checkbox3" value="true"
-    ></v-checkbox>
-     <v-checkbox label="Baixo peso ao nascer (inferior a 1500g)" v-model="info.checkbox4" value="true"
-    ></v-checkbox> 
-     <v-checkbox label="Medicação ototóxica de 5 dias" v-model="info.checkbox5" value="true"
-    ></v-checkbox>
-    <v-checkbox label="Meningite bacteriana" v-model="info.checkbox6" value="true"
-    ></v-checkbox>
-    <v-checkbox label="Índice de APGAR 0 a 4 no 1'/ 0 a 6 no 5'" v-model="info.checkbox7" value="true"
-    ></v-checkbox>
-    <v-checkbox label="Ventilação Mecânica de 5 dias" v-model="info.checkbox8" value="true"
-    ></v-checkbox>
-    <v-checkbox label="Sinais ou síndromes associadas a hipoacusia" v-model="info.checkbox9" value="true"
-    ></v-checkbox>
-    
-    </v-card>
-            </v-col>
-        </v-row><br>
-        <br>
-        <v-row justify="center">
-            <v-btn class="primary mt-3" justify="center" type="submit">Submeter</v-btn>
-        </v-row>
+
+                        <input type="checkbox" id="histfam" v-model="info.histfam" true-value="true" false-value="false" ></input> <label
+                            for="histfam">Historico Familiar de deficiência auditiva cogénita</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="infecong" v-model="info.infecong" value="true"></input> <label
+                            for="infecong">Infeção congénita: sífilis, toxoplasmose, rubéola, CMV e herpes</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="anomcranio" v-model="info.anomcranio" value="true"></input> <label
+                            for="anomcranio">Anomalias craniofaciais</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="hiperbili" v-model="info.hiperbili" value="true"></input> <label
+                            for="hiperbili">Hiper bilirrubinemia com critérios de ensanguinho transfusão</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="baixopeso" v-model="info.baixopeso" value="true"></input> <label
+                            for="baixopeso">Baixo peso ao nascer (inferior a 1500g)</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="medototo" v-model="info.medototo" value="true"></input> <label
+                            for="medototo">Medicação ototóxica de 5 dias</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="meninbacte" v-model="info.meninbacte" value="true"></input> <label
+                            for="meninbacte">Meningite bacteriana</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="indexapgar" v-model="info.indexapgar" value="true"></input> <label
+                            for="indexapgar">Índice de APGAR 0 a 4 no 1'/ 0 a 6 no 5</label>
+                        <v-spacer></v-spacer>
+
+                        <input type="checkbox" id="ventmec" v-model="info.ventmec" value="true"></input> <label
+                            for="ventmec">Ventilação Mecânica de 5 dias</label>
+                        <v-spacer></v-spacer>
+                        <input type="checkbox" id="hipoacusia" v-model="info.hipoacusia" value="true"></input> <label
+                            for="hipoacusia">Sinais ou síndromes associadas a hipoacusia</label>
+
+                    </v-card>
+                </v-col>
+            </v-row><br>
+            <br>
+            <v-row justify="center">
+                <v-btn class="primary mt-3" justify="center" type="submit">Submeter</v-btn>
+            </v-row>
         </v-form>
-        
-  </v-container>
-  
+
+    </v-container>
+
 </template>
 
 
@@ -64,29 +82,29 @@
 
 export default ({
     data: () => ({
-       
-            info: {},
-            lista_info:[],
-            add: false
 
-        
-        
+        info: {},
+        lista_info: [],
+        add: false
+
+
+
     }),
 
     methods: {
-        
+
         async registerHistorico() {
             let valid = this.$refs.addForm.validate();
             if (valid) {
                 try {
                     const nseq = this.$route.params
-                    console.log(nseq)
+                    console.log(this.info)
                     const res = await this.axios.post(`http://localhost:3000/medico/historico/${nseq.nseq}`, this.info);
                     console.log(res)
                     this.lista_info.push(res.data.fatores && nseq.nseq);
-                    console.log(this.lista_info)                
+                    console.log(this.lista_info)
                     this.$refs.addForm.reset();
-                    this.add=false;
+                    this.add = false;
                     this.alert = {
                         show: true,
                         type: 'success',
@@ -97,27 +115,27 @@ export default ({
                 }
 
 
-                }
             }
-         }
+        }
     }
+}
 
-   /* created: async function() {
-        const nseq = this.$route.params
-        const fatoresrisco = new FormData()
-        fatoresrisco.append("nseq", nseq.nseq)
-        fatoresrisco.append("histfam", this.checkbox)
-        fatoresrisco.append("infecong", this.checkbox1)
-        fatoresrisco.append("anomcranio", this.checkbox2)
-        fatoresrisco.append("baixopeso", this.checkbox3)
-        fatoresrisco.append("medototo", this.checkbox4)
-        fatoresrisco.append("meninbacte", this.checkbox5)
-        fatoresrisco.append("indexapgar", this.checkbox6)
-        fatoresrisco.append("ventmec", this.checkbox7)
-        fatoresrisco.append("hipoacusia", this.checkbox8)
-        fatoresrisco.append("histfam", this.checkbox9)
-        const res = await this.axios.post("http://localhost:3000/historico", fatoresrisco)
-}*/
+    /* created: async function() {
+         const nseq = this.$route.params
+         const fatoresrisco = new FormData()
+         fatoresrisco.append("nseq", nseq.nseq)
+         fatoresrisco.append("histfam", this.checkbox)
+         fatoresrisco.append("infecong", this.checkbox1)
+         fatoresrisco.append("anomcranio", this.checkbox2)
+         fatoresrisco.append("baixopeso", this.checkbox3)
+         fatoresrisco.append("medototo", this.checkbox4)
+         fatoresrisco.append("meninbacte", this.checkbox5)
+         fatoresrisco.append("indexapgar", this.checkbox6)
+         fatoresrisco.append("ventmec", this.checkbox7)
+         fatoresrisco.append("hipoacusia", this.checkbox8)
+         fatoresrisco.append("histfam", this.checkbox9)
+         const res = await this.axios.post("http://localhost:3000/historico", fatoresrisco)
+ }*/
 )
 
 </script>

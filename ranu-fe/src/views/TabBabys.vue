@@ -139,7 +139,7 @@ export default {
     async deleteNascimento(nascimentosList) {
       try {
         if (confirm('Tem a certeza que pretende apagar este registo?')) {
-          const res = await this.axios.delete(`http://localhost:3000/medico/delete/${nascimentosList.nseq}`);
+          const res = await this.axios.delete(`http://localhost:3000/tecnico/delete/${nascimentosList.nseq}`);
           window.location.reload();
           const index = this.nascimentosList.findIndex(c => c.nseq == nseq);
           this.nascimentosList.splice(index, 1);
